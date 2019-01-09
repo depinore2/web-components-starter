@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/depinore/web-components-starter#readme",
   "devDependencies": {
-    "@types/dompurify": "0.0.32",
     "typescript": "3.2.2"
   },
   "dependencies": {
