@@ -14,7 +14,7 @@ class ExampleElement extends BaseWebComponent
     }
     connectedCallback() {
         if(this.isConnected) {
-            setTimeout(() => this.render(`<h4>This should have changed!</h4>`), 1000)
+            setTimeout(() => this.render(`<h4>The text should now be smaller, and black.</h4>`), 1000)
         }
     }
     disconnectedCallback() {

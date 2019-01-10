@@ -11,7 +11,10 @@
         && 'content' in document.createElement('template'));
 
         if(!webComponentsSupported)
-            window.location = window.location.href.replace('index.html', 'index-compat.html');
+        {
+            window.location.pathname = window.location.pathname.replace('index.html', '')  + 'index-compat.html'
+        }
+            
     </script>
 
     <meta charset="UTF-8">
@@ -19,7 +22,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <script type='module' src='dist/--buildnumber--/src/index.js'></script>
+    <script src='node_modules/dompurify/dist/purify.js?--buildnumber--'></script>
+    <script type='module' src='dist_--buildnumber--/index.js'></script>
 </head>
 <body>
     <h1>This browser supports web components!</h1>

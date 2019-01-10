@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig-compat.json"
   },
   "repository": {
     "type": "git",
@@ -19,11 +17,20 @@
   },
   "homepage": "https://github.com/depinore/web-components-starter#readme",
   "devDependencies": {
+    "jspm": "0.16.53",
     "typescript": "3.2.2"
   },
   "dependencies": {
+    "@vaadin/router": "1.2.0",
     "@webcomponents/webcomponentsjs": "2.2.1",
-    "dompurify": "1.0.8",
-    "systemjs": "2.1.1"
+    "dompurify": "1.0.8"
+  },
+  "jspm": {
+    "dependencies": {
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.25"
+    },
+    "devDependencies": {
+      "typescript": "npm:typescript@^2.0.7"
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { default as purify } from '../node_modules/dompurify/dist/purify.es.js';
+declare var purify: any;
 
 export default abstract class BaseWebComponent extends HTMLElement
 {
