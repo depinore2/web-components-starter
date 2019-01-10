@@ -3,7 +3,7 @@ import BaseWebComponent from './WebComponentLibrary.js'
 
 console.log(`Message from the world: ${message}`);
 
-class ExampleElement extends BaseWebComponent
+export class ExampleElement extends BaseWebComponent
 {
     constructor() {
         super(`

@@ -1,4 +1,4 @@
-declare var purify: any;
+import * as purify from '../node_modules/dompurify/dist/purify.cjs.js'
 
 export default abstract class BaseWebComponent extends HTMLElement
 {
