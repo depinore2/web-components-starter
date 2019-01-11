@@ -17,8 +17,10 @@
   "homepage": "https://github.com/depinore/web-components-starter#readme",
   "devDependencies": {
     "browserify": "16.2.3",
+    "http-server": "0.11.1",
     "typescript": "3.2.2",
-    "uglify-es": "3.3.9"
+    "uglify-es": "3.3.9",
+    "watchify": "3.11.0"
   },
   "dependencies": {
     "@vaadin/router": "1.2.0",
