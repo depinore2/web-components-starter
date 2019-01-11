@@ -1,6 +1,6 @@
 param(
     $BuildNumber = "--buildnumber--",
-    $WithCompat = $false,
+    [switch] $WithCompat,
     $buildMode = "development"
 )
 
