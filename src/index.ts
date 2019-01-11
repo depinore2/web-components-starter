@@ -1,5 +1,5 @@
 import { message } from './constants.js';
-import BaseWebComponent from './WebComponentLibrary.js'
+import { BaseWebComponent } from '../ts_modules/@depinore/wclibrary/BaseWebComponent.js'
 
 console.log(`Message from the world: ${message}`);
 
@@ -8,7 +8,7 @@ export class ExampleElement extends BaseWebComponent
     constructor() {
         super(`
         h2 {
-            color: red; 
+            color: blue; 
         }
         `, `<h2>This is coming from a web component!</h2>`);
     }

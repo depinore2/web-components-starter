@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     /* Basic Options */
     "target": "es2016",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
     "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
@@ -11,7 +12,7 @@
     "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "src/index.js",                       /* Concatenate and emit output to single file. */
-     "outDir": "./dist_tsc",                        /* Redirect output structure to the directory. */
+    // "outDir": "./dist_tsc",                        /* Redirect output structure to the directory. */
     //"rootDir": "./src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
     // "removeComments": true,                /* Do not emit comments to output. */

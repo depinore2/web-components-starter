@@ -10,19 +10,28 @@ if($WithCompat) {
     $builds = $builds += @{ friendlyName = "Compatibility Build"; config = "tsconfig-compat.json"; output = "dist/compat_$buildNumber.js" }
 }
 
-$buildStagingDirectory = "$psscriptroot/../dist_tsc"
+function Clean-TypeScript() {
+    (start-process "$psscriptroot/../node_modules/.bin/tsc" -argumentlist '--build','--clean' -PassThru).WaitForExit()
+}
+
+$compiledDirectory = "src"
+
+Clean-TypeScript
 
 foreach($build in $builds) {
     # commands
-    $runTsc = { node "$psscriptroot/../node_modules/typescript/lib/tsc.js" '-p' $build.config '--outDir' $buildStagingDirectory }
+    $runTsc = { 
+        & "$psscriptroot/updateTsReferences.ps1";
+        (start-process "$psscriptroot/../node_modules/.bin/tsc" -ArgumentList @('--build',$build.config) -PassThru).WaitForExit()
+    }
     $runBrowserify = {
         param($debug = $false)
-        & "$psscriptroot/browserify.ps1" "$buildStagingDirectory/index.js" $build.output $debug
+
+        & "$psscriptroot/browserify.ps1" "$compiledDirectory/index.js" $build.output $debug
     }
     $runUglify = { node "$psscriptroot/../node_modules/uglify-es/bin/uglifyjs" $build.output -cm -o $build.output }
 
     write-host "Building $($build.friendlyName)."
-    mkdir $buildStagingDirectory -erroraction silentlycontinue | out-null
 
     # production mode
     if($buildMode -eq "production" -or $buildMode -eq "prod") {
@@ -30,16 +39,11 @@ foreach($build in $builds) {
         & $runBrowserify
         & $runUglify
     }
-    # package mode (for use in NPM, for example)
-    elseif($buildMode -eq "package" -or $buildMode -eq "npm" -or $buildMode -eq "pack") {
-        & $runTsc
-        copy-item $buildStagingDirectory dist -recurse
-    }
     # development mode
     else {
         & $runTsc
         & $runBrowserify $true
     }
 
-    remove-item $buildStagingDirectory -recurse -force
+    Clean-TypeScript
 }

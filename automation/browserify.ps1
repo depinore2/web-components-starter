@@ -1,5 +1,5 @@
 param(
-    $entryPoint = "$psscriptroot/../dist_tsc/index.js",
+    $entryPoint = "$psscriptroot/../src/index.js",
     $outFile = "$psscriptroot/../dist/--buildnumber--.js",
     $debugMode = $true,
     [switch] $watchMode
