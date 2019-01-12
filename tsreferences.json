@@ -1,6 +1,0 @@
-{
-    "containerDirectory": "ts_modules",
-    "mapping": [
-        { "from": "node_modules/@depinore/wclibrary/src", "to": "@depinore/wclibrary" }
-    ]
-}

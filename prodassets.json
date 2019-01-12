@@ -1,8 +1,0 @@
-[
-    "*.html",
-    "node_modules",
-    "ts_modules",
-    "dist",
-    "*.html",
-    "img"
-]

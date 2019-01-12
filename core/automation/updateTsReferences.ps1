@@ -1,0 +1,1 @@
+& "$psscriptRoot/../../automation/updateTsReferences.ps1" -workingDirectory $psscriptroot

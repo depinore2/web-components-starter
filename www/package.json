@@ -26,6 +26,26 @@
   "dependencies": {
     "@vaadin/router": "1.2.0",
     "@webcomponents/webcomponentsjs": "2.2.1",
-    "dompurify": "github:cure53/DOMPurify"
-  }
+    "dompurify": "1.0.8"
+  },
+  "tsReferences": [
+    {
+      "packageJson": "node_modules/@depinore/wclibrary/package.json",
+      "from": "src",
+      "to": "@depinore/wclibrary"
+    },
+    {
+      "packageJson": "../core/package.json",
+      "from": "src",
+      "to": "core"
+    }
+  ],
+  "prodassets": [
+    "*.html",
+    "node_modules",
+    "ts_modules",
+    "dist",
+    "*.html",
+    "img"
+  ]
 }
