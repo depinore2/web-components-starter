@@ -12,7 +12,8 @@
   "devDependencies": {
     "typescript": "3.2.2"
   },
-  "tsReferences": {
-    
+  "tsReferences": [],
+  "dependencies": {
+    "dompurify": "^1.0.8"
   }
 }

@@ -38,6 +38,11 @@
       "packageJson": "../core/package.json",
       "from": "src",
       "to": "core"
+    },
+    {
+      "packageJson": "../test/package.json",
+      "from": "src",
+      "to": "test"
     }
   ],
   "prodassets": [
