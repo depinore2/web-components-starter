@@ -18,6 +18,7 @@
   "devDependencies": {
     "@depinore/wclibrary": "github:depinore/wclibrary",
     "browserify": "16.2.3",
+    "concurrently": "4.1.0",
     "http-server": "0.11.1",
     "typescript": "3.2.2",
     "uglify-es": "3.3.9",
@@ -31,12 +32,12 @@
   "tsReferences": [
     {
       "packageJson": "node_modules/@depinore/wclibrary/package.json",
-      "from": "src",
+      "from": "node_modules/@depinore/wclibrary/src",
       "to": "@depinore/wclibrary"
     },
     {
       "packageJson": "../core/package.json",
-      "from": "src",
+      "from": "../core/src",
       "to": "core"
     }
   ],

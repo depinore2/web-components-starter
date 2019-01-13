@@ -7,10 +7,10 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "NodeJS Debug update-ts-refs.js",
             "program": "${file}",
             "args": [
-                "."
+                "F:\\code\\web-components-starter\\www\\automation/.."
             ],
             "cwd": "${workspaceFolder}/www"
         },

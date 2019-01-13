@@ -4,6 +4,8 @@ param(
     $buildMode = "development"
 )
 
+& "$psscriptroot/../../automation/update-ts-refs.ps1" -workingDirectory "$psscriptroot/.."
+
 $builds = @( @{ friendlyName = "Default Build"; config = "tsconfig.json"; output = "dist/$buildNumber.js" } )
 
 if($WithCompat) {
@@ -21,8 +23,9 @@ Clean-TypeScript
 foreach($build in $builds) {
     # commands
     $runTsc = { 
-        & "$psscriptroot/updateTsReferences.ps1";
-        (start-process "$psscriptroot/../node_modules/.bin/tsc" -ArgumentList @('--build',$build.config) -PassThru).WaitForExit()
+        # & "$psscriptroot/updateTsReferences.ps1";
+        # (start-process "$psscriptroot/../node_modules/.bin/tsc" -ArgumentList @('--build',$build.config) -PassThru).WaitForExit()
+        node "$psscriptroot/../node_modules/typescript/lib/tsc.js" -p $build.config`
     }
     $runBrowserify = {
         param($debug = $false)

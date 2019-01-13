@@ -18,7 +18,7 @@
   "tsReferences": [
     {
       "packageJson": "../core/package.json",
-      "from": "src",
+      "from": "../core/src",
       "to": "core"
     }
   ]
