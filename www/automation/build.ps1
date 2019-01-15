@@ -4,6 +4,10 @@ param(
     $buildMode = "development"
 )
 
+$beginningLocation = get-location;
+
+set-location "$psscriptroot/.."
+
 & "$psscriptroot/../../automation/update-ts-refs.ps1" -workingDirectory "$psscriptroot/.."
 
 $builds = @( @{ friendlyName = "Default Build"; config = "tsconfig.json"; output = "dist/$buildNumber.js" } )
@@ -48,3 +52,5 @@ foreach($build in $builds) {
 
     Clean-TypeScript
 }
+
+set-location $beginningLocation

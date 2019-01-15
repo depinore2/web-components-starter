@@ -45,7 +45,7 @@ async function getDependencies(contextFolder, packageJsonFile) {
     const absolutePackageJsonFile = path.resolve(contextFolder, packageJsonFile);
 
     const packageJsonFolder = path.dirname(absolutePackageJsonFile);
-    const packageJson = await readPackageJson(absolutePackageJsonFile);
+    const packageJson = await readPackageJson(absolutePackageJsonFile); 
 
     const allNpmDependencies = joinNpmDependencies(packageJson.dependencies, packageJson.devDependencies);
 
@@ -77,5 +77,7 @@ async function getDependencies(contextFolder, packageJsonFile) {
 
 module.exports = {
     getDependencies,
-    dedupeDependencies
+    dedupeDependencies,
+    readPackageJson,
+    joinNpmDependencies,
 }
