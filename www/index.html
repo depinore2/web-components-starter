@@ -5,27 +5,40 @@
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
     <script>
         var webComponentsSupported = ('registerElement' in document
         && 'import' in document.createElement('link')
         && 'content' in document.createElement('template'));
 
-        if(!webComponentsSupported)
-        {
-            window.location.pathname = window.location.pathname.replace('index.html', '')  + 'index-compat.html'
-        }
-            
-    </script>
+        var isIE = navigator.userAgent.indexOf("MSIE ") > -1 || navigator.userAgent.indexOf("Trident/") > -1;
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+        var scriptsToLoad = [];
+
+        // load the web components shim if necessary
+        if(!webComponentsSupported)
+            scriptsToLoad.push('node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js?v=--buildnumber--');
+        
+        // figure out whether to load compatibility or modern javascript, depending on whether it's internet explorer or not.
+        if(isIE)
+            scriptsToLoad.push('dist/compat_--buildnumber--.js');
+        else
+            scriptsToLoad.push('dist/--buildnumber--.js');
+
+        for(var i = 0; i < scriptsToLoad.length; i++) {
+            var script = document.createElement('script');
+            script.src = scriptsToLoad[i];
+
+            document.head.appendChild(script);
+        }
+    </script>
 </head>
 <body>
     <h1>Hello world!</h1>
     <depinore-example></depinore-example>
-
-    <script src='dist/--buildnumber--.js'></script>
 </body>
 </html>
