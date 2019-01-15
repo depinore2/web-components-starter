@@ -3,7 +3,7 @@ import { BaseWebComponent } from '../ts_modules/@depinore/wclibrary/BaseWebCompo
 
 console.log(`Message from the world: ${message}`);
 
-export class ExampleElement extends BaseWebComponent
+export class AppComponent extends BaseWebComponent
 {
     constructor() {
         super(`
@@ -22,4 +22,4 @@ export class ExampleElement extends BaseWebComponent
         alert('The element got removed from the DOM.');
     }
 }
-customElements.define('depinore-example', ExampleElement);
+customElements.define('depinore-app', AppComponent);
