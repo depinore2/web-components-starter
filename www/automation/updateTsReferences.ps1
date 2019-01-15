@@ -1,1 +1,1 @@
-& "$psscriptRoot/../../automation/updateTsReferences.ps1" -workingDirectory $psscriptroot
+& "$psscriptRoot/../../automation/update-ts-refs.ps1" -workingDirectory (resolve-path "$psscriptroot/..")

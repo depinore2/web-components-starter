@@ -3,6 +3,7 @@ const path = require('path');
 
 async function main() {
     const originFolder = path.resolve(process.argv[2]); // assumes it's going to be an absolute path.
+
     const { npmDependencies, tsReferences } = await getDeps.getDependencies(originFolder, path.resolve(originFolder, 'package.json'));
     
     const dedupedNpmDependencies = getDeps.dedupeDependencies(npmDependencies);

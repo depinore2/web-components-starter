@@ -4,6 +4,7 @@ param(
 )
 
 if(!$skipNpm) {
+    write-host "Installing own npm dependencies in $(get-location)"
     npm i # first thing's first: install all local modules.
 }
 
@@ -12,6 +13,7 @@ $updateRefsOutput = node "$psscriptroot/update-ts-refs.js" $workingDirectory | c
 if(!$skipNpm) {
     # run all NPM commands
     foreach($cmd in $updateRefsOutput.npmInstallationCommands) {
+        write-host "Command: $cmd`nCWD: $(get-location)"
         & ([Scriptblock]::Create($cmd))
     }
 }

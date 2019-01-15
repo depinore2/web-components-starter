@@ -23,6 +23,17 @@
                 "${command:SpecifyScriptArgs}"
             ],
             "cwd": "${file}"
+        },
+        {
+            "type": "PowerShell",
+            "request": "launch",
+            "name": "PowerShell Debug build_prod.ps1",
+            "script": "${workspaceFolder}/automation/build_prod.ps1",
+            "args": [
+                "1.2.3.4",
+                "../dist_wcstarter"
+            ],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
