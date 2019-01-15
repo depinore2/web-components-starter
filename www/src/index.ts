@@ -8,7 +8,7 @@ export class ExampleElement extends BaseWebComponent
     constructor() {
         super(`
         h2 {
-            color: blue; 
+            color: red; 
         }
         `, `<h2>This is coming from a web component!</h2>`);
     }
