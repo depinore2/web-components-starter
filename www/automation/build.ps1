@@ -13,7 +13,7 @@ if($WithCompat) {
 }
 
 function Clean-TypeScript() {
-    (start-process "$psscriptroot/../node_modules/.bin/tsc" -argumentlist '--build','--clean' -PassThru).WaitForExit()
+    node "$psscriptroot/../node_modules/typescript/lib/tsc.js" --build --clean
 }
 
 $compiledDirectory = "src"
