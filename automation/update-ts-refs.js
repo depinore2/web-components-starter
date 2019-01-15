@@ -26,9 +26,10 @@ async function main() {
             if((directDependencies[packageName] || []).indexOf(version) === -1) // only install this if it's not already a direct dependency of the origin package. (it's assumed that npm i was already run on the host.)
                 toInstall.push(packageName + '@' + version);
 
-    const npmInstallationCommands = [
-        `npm i ${originFolder} ${toInstall.join(' ')}`
-    ]
+    const npmInstallationCommands = [];
+
+    if(toInstall.length)
+        npmInstallationCommands.push(`npm i ${originFolder} ${toInstall.join(' ')}`);
 
     console.log(JSON.stringify({
         npmInstallationCommands,

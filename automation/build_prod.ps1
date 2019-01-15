@@ -18,11 +18,15 @@ function ChangeLocation($loc) {
 
 $originalLocation = get-location
 
+$sourceDirectory = "$psscriptroot/../"
+
+write-host "First removing any node_modules if there are any, as it tends to slow everything down..."
+get-childitem node_modules -recurse | remove-item -recurse -force
+
 write-host "Copying everything to $destinationFolder"
-copy-item (resolve-path "$psscriptroot/../*") $destinationFolder -recurse -force
+copy-item (resolve-path "$sourceDirectory*") $destinationFolder -recurse -force
 ChangeLocation "$destinationFolder/www"
 
-& "./automation/clean.ps1"
 remove-item node_modules -recurse -force -erroraction silentlycontinue
 
 get-childitem *.html -recurse | 
