@@ -15,16 +15,9 @@ export class AppComponent extends BaseWebComponent
         `);
     }
     connectedCallback() {
-        routie('', () => {
-            this.render(`<depinore-it-works></depinore-it-works>`)
-        })
-
-        // go to #/view2/hello%20world to test this out.
-        routie('/view2/:myParameter', myParameter => {
-            this.render(`
-                <h2>You navigated to another state</h2>
-                <p>You provided the value <strong>${this.sanitize(myParameter)}</strong></p>
-            `)
+        routie({
+            '': () => this.render(`<depinore-it-works></depinore-it-works>`),
+            '/view2/:myParameter': myParameter => this.render(`<depinore-step-2 data-value='${this.sanitize(myParameter)}'></depinore-step-2>`)
         })
     }   
     disconnectedCallback() {
@@ -34,8 +27,62 @@ export class AppComponent extends BaseWebComponent
 }
 customElements.define('depinore-app', AppComponent);
 
+
+const defaultUserInput = 'nothing so far...';
+
 customElements.define('depinore-it-works', class extends BaseWebComponent {
+    userInput: string = '';
+
     constructor() {
-        super(``,`<h1>If you see this, it works!</h1>`)
+        super(``,`
+            <h1>If you see this, it works!</h1>
+            <form>
+                Try out this form:
+                <input type='text' id='userInputText' placeholder='Type something here.'/>
+
+                <p>You typed in: <span id='userInput'>${defaultUserInput}</span></p>
+
+                <input type='submit' id='submit' value='Submit' />
+            </form>
+        `)
+    }
+    connectedCallback() {
+        if(this.shadowRoot) {
+            this.configureUserInput(this.shadowRoot);
+            this.configureSubmission(this.shadowRoot);
+        }
+    }
+    private configureUserInput(shadowRoot: ShadowRoot) {
+        const userInputText = shadowRoot.querySelector('#userInputText') as HTMLInputElement | null;
+            
+        if(userInputText) {
+            userInputText.addEventListener('input', (event: any) => {
+                this.userInput = event.target.value || defaultUserInput;
+                this.render(this.sanitize(this.userInput), '#userInput');
+            })
+        }
+        else
+            throw new Error('User input control or span are missing.');
+    }
+    private configureSubmission(shadowRoot: ShadowRoot) {
+        const form = shadowRoot.querySelector('form');
+
+        if(form) {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                location.hash = `/view2/${this.sanitize(this.userInput)}`;
+            });
+        }
+    }
+})
+customElements.define('depinore-step-2', class extends BaseWebComponent {
+    constructor() {
+        super('', `
+            You submitted <span id='submittedValue'></span>.
+            <a href='#'>&larr; Go back</a>
+        `);
+    }
+    connectedCallback() {
+        this.render(this.sanitize(this.getAttribute('data-value') || ''), '#submittedValue');
     }
 })
