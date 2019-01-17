@@ -24,8 +24,11 @@
             scriptsToLoad.push('node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js?v=--buildnumber--');
         
         // figure out whether to load compatibility or modern javascript, depending on whether it's internet explorer or not.
-        if(isIE)
+        if(isIE) {
+            scriptsToLoad.push('node_modules/es6-promise/dist/es6-promise.min.js');
+            scriptsToLoad.push('node_modules/whatwg-fetch/fetch.js');
             scriptsToLoad.push('dist/compat_--buildnumber--.js');
+        }
         else
             scriptsToLoad.push('dist/--buildnumber--.js');
 

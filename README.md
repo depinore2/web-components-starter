@@ -9,14 +9,13 @@ Because you believe that it's important to be able to easily see what's going on
 Because you think shell scripts are a programmer's best friend.
 
 ## Tooling ##
-* Some [PowerShell Core](https://github.com/powershell/powershell) Scripts, located in /automation and /www/automation
+* Some [PowerShell Core](https://github.com/powershell/powershell) Scripts, located in /automation and /www/automation.  If you don't already have it on your system, please download it at the link.
 * [TypeScript](https://www.typescriptlang.org/), because typos suck.
 * [Browserify](http://browserify.org) because it's simple.
 * [http-server](https://www.npmjs.com/package/http-server) for development server.
 
 ## Libraries out of the box ##
-* [Vaadin](https://vaadin.com/router) for routing.
-* [Axios](https://www.npmjs.com/package/axios) for http calls.
+* [routie](https://github.com/jgallen23/routie) for routing.
 * [DOMPurify](https://github.com/cure53/DOMPurify) To help you with protecting your HTML.
 
 ## How do I run this? ##
@@ -67,6 +66,8 @@ When in `run` mode, it will not automatically create the compatibility assets.  
 ./www/test-compat.ps1
 ~~~
 in `pwsh`, from the root of the repository.  This will run `/automation/build.ps1 -withCompat`, and then start `http-server`.
+
+Furthermore, [ES6 promise](https://www.npmjs.com/package/es6-promise) and [fetch](https://github.com/github/fetch) polyfills are automatically included and loaded in compatibility mode.
 
 ## tsreferences.json ##
 Any mappings that you provide in this folder will pull from other locations on disk and place them into your ts references folder (`ts_modules` by default) at build time.
