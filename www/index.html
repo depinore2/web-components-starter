@@ -11,6 +11,26 @@
     <title>Document</title>
 
     <script>
+        function loadScript(src) {
+            var script = document.createElement('script');
+            script.src = src
+
+            document.head.appendChild(script);
+
+            return script;
+        }
+        function loadScripts(srcs) {
+            if(srcs && srcs.length) {
+                var head = srcs[0];
+                var tail = srcs.slice(1);
+
+                var scriptElement = loadScript(head);
+
+                scriptElement.onload = function() {
+                    loadScripts(tail); // waits before this script loads before continuing to load the rest of the scripts.
+                }
+            }
+        }
         var webComponentsSupported = ('registerElement' in document
         && 'import' in document.createElement('link')
         && 'content' in document.createElement('template'));
@@ -26,18 +46,13 @@
         // figure out whether to load compatibility or modern javascript, depending on whether it's internet explorer or not.
         if(isIE) {
             scriptsToLoad.push('node_modules/es6-promise/dist/es6-promise.min.js');
-            scriptsToLoad.push('node_modules/whatwg-fetch/fetch.js');
+            scriptsToLoad.push('node_modules/whatwg-fetch/dist/fetch.umd.js');
             scriptsToLoad.push('dist/compat_--buildnumber--.js');
         }
         else
             scriptsToLoad.push('dist/--buildnumber--.js');
 
-        for(var i = 0; i < scriptsToLoad.length; i++) {
-            var script = document.createElement('script');
-            script.src = scriptsToLoad[i];
-
-            document.head.appendChild(script);
-        }
+        loadScripts(scriptsToLoad);
     </script>
 </head>
 <body>

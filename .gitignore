@@ -84,3 +84,6 @@ typings/
 **/*.js
 **/*.d.ts
 **/*.map
+
+!automation/get-ts-deps.js
+!automation/update-ts-refs.js
