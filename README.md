@@ -20,7 +20,7 @@ Because you think shell scripts are a programmer's best friend.
 
 ## How do I run this? ##
 
-Simply run `./automation/run.ps1` from the root of the repository in a `pwsh` terminal.
+Simply run `./www/automation/run.ps1` from the root of the repository in a `pwsh` terminal.
 
 Every time you make a change to any of your TypeScript files, it will recompile your source code.  Make sure to reload your browser, and ensure the browser cache is turned off.
 * [Disabling cache in Chrome](https://www.technipages.com/google-chrome-how-to-completely-disable-cache)
@@ -32,8 +32,8 @@ Note: this workflow is only for working in the `www` folder.  For core or test, 
 
 ## Repo Structure ##
 * www - The main project, which is what holds all assets that will be deployed to a web server.
-* core - Put most of your core logic here.  Do your best to segregate that which is web-related to platform-agnostic code. This will make testing easier.
-* test - A testing project that has a reference to core.  To avoid having to mock up a bunch of web component stuff, focus most of your non-component code in Core, so that tseting is made easy.
+* core - Put most of your core logic here.  Separate your pure logic out of your web code, and put it all here.  It'll make testing easier.
+* test - A unit testing project that has a reference to core.  I'm of the philosophy that unit tests are best suited to pure logic, not UI testing--so focus on just testing pure logic here.
 
 ## Working in Core or Test ##
 * I recommend you run TypeScript in watch mode (`tsc --watch`).
