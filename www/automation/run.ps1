@@ -1,5 +1,5 @@
 # build and browserify it fully once, before beginning watch mode.
-set-location "$psscriptroot/../www"
+set-location "$psscriptroot/.."
 & "./automation/build.ps1"
 
 #do it again, but in watch mode now.

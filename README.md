@@ -41,7 +41,7 @@ Note: this workflow is only for working in the `www` folder.  For core or test, 
   * For example, if you make a change to `core` while working on `test`, simply do: `pwsh 'test/automation/update-ts-refs.ps1'`, and it will pull in the latest copy of core into test.
 
 ## Building for Production ##
-Run `automation/build_prod.ps1` from `pwsh`.  It takes two parameters:
+Run `automation/build-prod.ps1` from `pwsh`.  It takes two parameters:
 * buildNumber
 * destinationFolder
 

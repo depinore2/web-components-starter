@@ -20,6 +20,8 @@ $originalLocation = get-location
 
 $sourceDirectory = "$psscriptroot/../"
 
+ChangeLocation $sourceDirectory
+
 write-host "First removing any node_modules if there are any, as it tends to slow everything down..."
 get-childitem node_modules -recurse | remove-item -recurse -force
 
