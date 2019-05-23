@@ -47,7 +47,7 @@ Run `automation/build-prod.ps1` from `pwsh`.  It takes two parameters:
 
 Example: 
 ~~~
-pwsh automation/build_prod.ps1 -buildNumber 1.2.3.4 -destinationFolder ../out
+pwsh automation/build-prod.ps1 -buildNumber 1.2.3.4 -destinationFolder ../out
 ~~~
 
 It will do the following:
