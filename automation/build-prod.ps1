@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory=$true)]$buildNumber,
-    [Parameter(Mandatory=$true)]$destinationFolder
+    [Parameter(Mandatory=$true)]$destinationFolder,
+    [Parameter(Mandatory=$true)]$environment
 )
 
 $begin = get-date
@@ -37,6 +38,10 @@ get-childitem *.html -recurse |
 
         (get-content $_.fullname -raw) -ireplace '--buildnumber--',$buildNumber | set-content $_.fullname
     }
+
+write-host "Adding the appropriate environment."
+(get-content index.html -raw) -replace "<head>","<head>`n`t<script>`n`t`t//This was added by build-prod.ps1`n`t`twindow.build_environment = '$environment';`n`t</script>" |
+    set-content index.html
 
 & "./automation/build.ps1" -buildNumber $buildNumber -withCompat -buildMode production
 

@@ -2,7 +2,9 @@ import { message } from './constants.js';
 import { BaseWebComponent } from '../ts_modules/@depinore/wclibrary/BaseWebComponent.js'
 import { default as routie } from '../node_modules/@prepair/routie/lib/index.js';
 
-console.log(`Message from the world: ${message}`);
+declare const build_environment: string; // pass this constant to anywhere else in your application that needs to be environment-aware.
+
+console.log(`Message from the world: ${message}.  You are running the ${build_environment} build.`);
 
 export class AppComponent extends BaseWebComponent
 {
