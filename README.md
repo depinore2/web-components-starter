@@ -41,13 +41,14 @@ Note: this workflow is only for working in the `www` folder.  For core or test, 
   * For example, if you make a change to `core` while working on `test`, simply do: `pwsh 'test/automation/update-ts-refs.ps1'`, and it will pull in the latest copy of core into test.
 
 ## Building for Production ##
-Run `automation/build-prod.ps1` from `pwsh`.  It takes two parameters:
+Run `automation/build-prod.ps1` from `pwsh`.  It takes three parameters:
 * buildNumber
 * destinationFolder
+* environment
 
 Example: 
 ~~~
-pwsh automation/build-prod.ps1 -buildNumber 1.2.3.4 -destinationFolder ../out
+pwsh automation/build-prod.ps1 -buildNumber 1.2.3.4 -destinationFolder ../out -environment 'Production'
 ~~~
 
 It will do the following:
@@ -57,6 +58,7 @@ It will do the following:
 * Keep only blob patterns listed in your package.json `prodAssets` section
 * Remove all `node_modules` and reinstall only dependencies (effectively removing all devDependencies).
 * Any file that contains the string "--buildnumber--" will be replaced with the buildNumber you've provided.  This is used in the index.html to provide a unique build number and break the cache.
+* Insert a global variable `build_environment` in the index.html that you can use at runtime if you need to do something different in production rather than in development.
 
 ## Internet Explorer 11 ##
 Care has been taken to make sure IE 11 can be supported.  If you work for an enterprise where a large part of your clients still use IE11 (like me), then this is key.
