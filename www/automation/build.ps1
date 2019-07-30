@@ -1,14 +1,15 @@
 param(
     $BuildNumber = "--buildnumber--",
     [switch] $WithCompat,
-    $buildMode = "development"
+    $buildMode = "development",
+    $additionalNpmInstallationArguments = ''
 )
 
 $beginningLocation = get-location;
 
 set-location "$psscriptroot/.."
 
-& "$psscriptroot/../../automation/update-ts-refs.ps1" -workingDirectory "$psscriptroot/.."
+& "$psscriptroot/../../automation/update-ts-refs.ps1" -workingDirectory "$psscriptroot/.." -additionalNpmArguments $additionalNpmInstallationArguments
 
 $builds = @( @{ friendlyName = "Default Build"; config = "tsconfig.json"; output = "dist/$buildNumber.js" } )
 

@@ -43,11 +43,11 @@ write-host "Adding the appropriate environment."
 (get-content index.html -raw) -replace "<head>","<head>`n`t<script>`n`t`t//This was added by build-prod.ps1`n`t`twindow.build_environment = '$environment';`n`t</script>" |
     set-content index.html
 
-& "./automation/build.ps1" -buildNumber $buildNumber -withCompat -buildMode production
+& "./automation/build.ps1" -buildNumber $buildNumber -withCompat -buildMode production -additionalNpmInstallationArguments "--loglevel=error"
 
 write-host "Removing all NPM devDependencies."
 remove-item node_modules -recurse -force
-npm i --only=prod
+npm i --only=prod --loglevel=error
 
 write-host "Removing everything except www"
 get-childitem -path '..' | where-object FullName -ne (get-location) | remove-item -recurse -force

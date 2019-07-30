@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory=$true)] $workingDirectory,
-    [switch] $skipNpm
+    [switch] $skipNpm,
+    [string] $additionalNpmArguments = ''
 )
 
 $beginningLocation = Get-Location
@@ -8,7 +9,7 @@ set-location $workingDirectory
 
 if(!$skipNpm) {
     write-host "Installing own npm dependencies in $(get-location)"
-    npm i # first thing's first: install all local modules.
+    & "npm" -argumentlist @('i', $additionalNpmArguments) # first thing's first: install all local modules.
 }
 
 $updateRefsOutput = node "$psscriptroot/update-ts-refs.js" $workingDirectory | convertfrom-json
@@ -16,6 +17,7 @@ $updateRefsOutput = node "$psscriptroot/update-ts-refs.js" $workingDirectory | c
 if(!$skipNpm) {
     # run all NPM commands
     foreach($cmd in $updateRefsOutput.npmInstallationCommands) {
+        $cmd = "$cmd $additionalNpmArguments"
         write-host "Command: $cmd`nCWD: $(get-location)"
         & ([Scriptblock]::Create($cmd))
     }
