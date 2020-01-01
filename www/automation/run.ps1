@@ -4,7 +4,7 @@ set-location "$psscriptroot/.."
 
 #do it again, but in watch mode now.
 $tscCmd = "`'$(resolve-path ./node_modules/.bin/tsc) -p $(resolve-path tsconfig.json) --watch`'"
-$browserifyCmd = "`'pwsh $(resolve-path "./automation/browserify.ps1") -watchMode`'"
+$browserifyCmd = "'pwsh -C \`"start-sleep -seconds 5\`" && pwsh $(resolve-path "./automation/browserify.ps1") -watchMode'"
 $httpCmd = "`'$(resolve-path ./node_modules/.bin/http-server) -s -o -c-1`'"
 
 $wholeCommand = "$(resolve-path ./node_modules/.bin/concurrently) $tscCmd $browserifyCmd $httpCmd"
