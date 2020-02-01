@@ -4,6 +4,12 @@ param(
     [string] $additionalNpmArguments = ''
 )
 
+#clean out all current ts_modules
+Write-Host "Cleaning out all ts_modules in $psscriptroot/../";
+
+get-childitem 'ts_modules' -path "$psscriptroot/../../"|
+remove-item -recurse -force
+
 $beginningLocation = Get-Location
 set-location $workingDirectory
 
@@ -30,3 +36,7 @@ foreach($map in $updateRefsOutput.tsReferences) {
 }
 
 set-location $beginningLocation
+
+# update all references to ts_modules to be one level deeper, to accomodate nested ts_modules references.
+get-childitem '*.ts' -path ts_modules -recurse |
+foreach-object { (get-content $_ -raw) -replace '../../ts_modules','../../../ts_modules' | out-file -filepath $_ -encoding 'UTF8' }
