@@ -31,9 +31,9 @@
                 }
             }
         }
-        var webComponentsSupported = ('registerElement' in document
-        && 'import' in document.createElement('link')
-        && 'content' in document.createElement('template'));
+        var webComponentsSupported = ('customElements' in window
+            && 'define' in window.customElements
+            && 'content' in document.createElement('template'));
 
         var isIE = navigator.userAgent.indexOf("MSIE ") > -1 || navigator.userAgent.indexOf("Trident/") > -1;
 
